@@ -95,13 +95,13 @@ def main(nx, ny, nz, num_iter, num_halo=2, plot_result=False):
     ] = 1.0
     out_field = in_field.copy()
 
-    np.save("in_field", in_field)
+    np.save("in_field_numba", in_field)
 
     if plot_result:
         plt.ioff()
         plt.imshow(in_field[in_field.shape[0] // 2, :, :], origin="lower")
         plt.colorbar()
-        plt.savefig("in_field.png")
+        plt.savefig("in_field_numba.png")
         plt.close()
 
     # Warm-up for JIT compilation
@@ -113,12 +113,12 @@ def main(nx, ny, nz, num_iter, num_halo=2, plot_result=False):
 
     print(f"Elapsed time for work = {toc - tic} s")
 
-    np.save("out_field", out_field)
+    np.save("out_field_numba", out_field)
 
     if plot_result:
         plt.imshow(out_field[out_field.shape[0] // 2, :, :], origin="lower")
         plt.colorbar()
-        plt.savefig("out_field.png")
+        plt.savefig("out_field_numba.png")
         plt.close()
 
 

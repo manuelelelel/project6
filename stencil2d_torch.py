@@ -85,13 +85,13 @@ def main(nx, ny, nz, num_iter, num_halo=2, plot_result=False):
 
     out_field = in_field.clone()
 
-    torch.save(in_field, "in_field.pt")
+    torch.save(in_field, "in_field_torch.pt")
 
     if plot_result:
         plt.ioff()
         plt.imshow(in_field[in_field.shape[0] // 2, :, :].cpu().numpy(), origin="lower")
         plt.colorbar()
-        plt.savefig("in_field.png")
+        plt.savefig("in_field_torch.png")
         plt.close()
 
     apply_diffusion(in_field.clone(), out_field.clone(), alpha, num_halo)
@@ -102,12 +102,12 @@ def main(nx, ny, nz, num_iter, num_halo=2, plot_result=False):
 
     print(f"Elapsed time for work = {toc - tic} s")
 
-    torch.save(out_field, "out_field.pt")
+    torch.save(out_field, "out_field_torch.pt")
 
     if plot_result:
         plt.imshow(out_field[out_field.shape[0] // 2, :, :].cpu().numpy(), origin="lower")
         plt.colorbar()
-        plt.savefig("out_field.png")
+        plt.savefig("out_field_torch.png")
         plt.close()
 
 
