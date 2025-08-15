@@ -5,71 +5,123 @@ import matplotlib.pyplot as plt
 import jax
 import jax.numpy as jnp
 import time
+from jax import lax
+from functools import partial
 
 
-@jax.jit
-def laplacian(in_field, num_halo, extend=0):
+# ---------------------------------------
+# 1) Laplacian (with halo-aware slicing)
+# ---------------------------------------
+@partial(jax.jit, static_argnames=("num_halo", "extend"))
+def laplacian(in_field, num_halo: int, extend: int = 0, out_field=None):
+    """
+    Compute the 2D (x,y) Laplacian on each z-slice using 2nd-order centered differences.
+    Slices mirror your original NumPy code; 'extend' controls how far into the halo we compute.
+    """
     ib = num_halo - extend
     ie = -num_halo + extend
     jb = num_halo - extend
     je = -num_halo + extend
 
-    # Pad edge values if required by slice behavior
+    # Match original 'None' handling for ie/je == -1
+    x_right_end = (ie + 1) if (ie != -1) else None
+    y_up_end    = (je + 1) if (je != -1) else None
+
+    lap = jnp.zeros_like(in_field) if out_field is None else out_field
+
     center = in_field[:, jb:je, ib:ie]
     left   = in_field[:, jb:je, ib - 1 : ie - 1]
-    right  = in_field[:, jb:je, ib + 1 : ie + 1 if ie != -1 else None]
-    top    = in_field[:, jb - 1 : je - 1, ib:ie]
-    bottom = in_field[:, jb + 1 : je + 1 if je != -1 else None, ib:ie]
+    right  = in_field[:, jb:je, ib + 1 : x_right_end]
+    down   = in_field[:, jb - 1 : je - 1, ib:ie]
+    up     = in_field[:, jb + 1 : y_up_end,    ib:ie]
 
-    return -4.0 * center + left + right + top + bottom
-
-
-from jax import lax
-
-from jax import lax
-
-def update_halo(field, num_halo):
-    nz, ny, nx = field.shape
-
-    def slice_and_update(fld, src_start, dst_start, size, axis):
-        # Move axis to front
-        fld = jnp.moveaxis(fld, axis, 0)
-        src = lax.dynamic_slice(fld, (src_start, 0, 0), (size, fld.shape[1], fld.shape[2]))
-        fld = lax.dynamic_update_slice(fld, src, (dst_start, 0, 0))
-        return jnp.moveaxis(fld, 0, axis)
-
-    # Bottom edge
-    field = slice_and_update(field, ny - 2 * num_halo, 0, num_halo, axis=1)
-    # Top edge
-    field = slice_and_update(field, num_halo, ny - num_halo, num_halo, axis=1)
-    # Left edge
-    field = slice_and_update(field, nx - 2 * num_halo, 0, num_halo, axis=2)
-    # Right edge
-    field = slice_and_update(field, num_halo, nx - num_halo, num_halo, axis=2)
-
-    return field
+    interior_lap = -4.0 * center + left + right + down + up
+    return lap.at[:, jb:je, ib:ie].set(interior_lap)
 
 
+# ---------------------------------------
+# 2) Halo update (up/down then left/right)
+# ---------------------------------------
+@partial(jax.jit, static_argnames=("num_halo",))
+def update_halo(field, num_halo: int):
+    """
+    Update halo zones using:
+      - bottom/top without corners in x,
+      - left/right including corners (fills corners).
+    Returns a new array (functional, no in-place mutation).
+    """
+    h = num_halo
+    if h == 0:
+        return field
+
+    out = field
+    # bottom edge (without corners): y[0:h, x[h:-h]] <= y[ny-2h:ny-h, x[h:-h]]
+    out = out.at[:, :h, h:-h].set(out[:, -2*h:-h, h:-h])
+    # top edge (without corners): y[ny-h:ny, x[h:-h]] <= y[h:2h, x[h:-h]]
+    out = out.at[:, -h:, h:-h].set(out[:, h:2*h, h:-h])
+    # left edge (including corners): x[0:h] <= x[nx-2h:nx-h]
+    out = out.at[:, :, :h].set(out[:, :, -2*h:-h])
+    # right edge (including corners): x[nx-h:nx] <= x[h:2h]
+    out = out.at[:, :, -h:].set(out[:, :, h:2*h])
+    return out
 
 
-def apply_diffusion(in_field, alpha, num_halo, num_iter=1):
-    out_field = jnp.copy(in_field)
-    tmp_field = jnp.copy(in_field)
+# ---------------------------------------
+# 3) 4th-order diffusion apply (iterative)
+# ---------------------------------------
+@partial(jax.jit, static_argnames=("num_halo", "num_iter"))
+def apply_diffusion(in_field, alpha: float, num_halo: int, num_iter: int = 1):
+    """
+    Perform 'num_iter' iterations of the 4th-order diffusion step:
+      tmp = Lap(in, extend=1); lap2 = Lap(tmp, extend=0);
+      out[interior] = in[interior] - alpha * lap2[interior].
+    Swaps buffers except on the last iteration; finally updates halos.
+    Returns the final field (same shape as input).
+    """
+    h = num_halo
 
-    def body_fun(i, val):
-        in_f, out_f = val
+    if h == 0:
+        # No halo path — interior is the whole array
+        def body(i, carry):
+            inf, outf = carry
+            tmp  = laplacian(inf, num_halo=h, extend=1)
+            lap2 = laplacian(tmp, num_halo=h, extend=0)
+            outf = outf.at[:].set(inf - alpha * lap2)
+            # swap unless last iter
+            inf, outf = lax.cond(i < num_iter - 1,
+                                 lambda c: (c[1], c[0]),
+                                 lambda c: c,
+                                 (inf, outf))
+            return (inf, outf)
 
-        in_f = update_halo(in_f, num_halo)
-        tmp = laplacian(in_f, num_halo, extend=1)
-        lap = laplacian(tmp, num_halo, extend=0)
+        inf, outf = lax.fori_loop(0, num_iter, body, (in_field, jnp.zeros_like(in_field)))
+        return outf
 
-        out_inner = in_f[:, num_halo:-num_halo, num_halo:-num_halo] - alpha * lap
-        out_f = out_f.at[:, num_halo:-num_halo, num_halo:-num_halo].set(out_inner)
+    # Regular halo path
+    def body(i, carry):
+        inf, outf = carry
 
-        return (out_f, in_f) if i < num_iter - 1 else (update_halo(out_f, num_halo), in_f)
+        # 1) update halos of the input
+        inf = update_halo(inf, h)
 
-    in_field, out_field = jax.lax.fori_loop(0, num_iter, body_fun, (in_field, out_field))
-    return out_field
+        # 2) two Laplacians (extend=1 then 0)
+        tmp  = laplacian(inf, num_halo=h, extend=1)
+        lap2 = laplacian(tmp, num_halo=h, extend=0)
+
+        # 3) interior update only
+        interior = inf[:, h:-h, h:-h] - alpha * lap2[:, h:-h, h:-h]
+        outf = outf.at[:, h:-h, h:-h].set(interior)
+
+        # 4) swap unless last iter
+        inf, outf = lax.cond(i < num_iter - 1,
+                             lambda c: (c[1], c[0]),
+                             lambda c: c,
+                             (inf, outf))
+        return (inf, outf)
+
+    inf, outf = lax.fori_loop(0, num_iter, body, (in_field, jnp.zeros_like(in_field)))
+    # Final halo update on the result (matches your NumPy code path)
+    return update_halo(outf, h)
 
 
 @click.command()
