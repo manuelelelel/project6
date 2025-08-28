@@ -1,0 +1,617 @@
+{
+  "program": "numba",
+  "sizes": [
+    32,
+    48,
+    64,
+    96,
+    128,
+    192
+  ],
+  "nz": 64,
+  "iters": 128,
+  "reps": 10,
+  "halo": 2,
+  "records": [
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 32,
+      "ny": 32,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 0.786432
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 48,
+      "ny": 48,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 1.769472
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 64,
+      "ny": 64,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 3.145728
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 96,
+      "ny": 96,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 7.077888
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 128,
+      "ny": 128,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 12.582912
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 1,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 2,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 3,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 4,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 5,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 6,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 7,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 8,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 9,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    },
+    {
+      "nx": 192,
+      "ny": 192,
+      "nz": 64,
+      "iter": 128,
+      "rep": 10,
+      "elapsed_s": NaN,
+      "rpg_us": NaN,
+      "workset_mb": 28.311552
+    }
+  ]
+}
