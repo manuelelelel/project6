@@ -1,0 +1,5 @@
+{
+  "max_abs_diff_numpy_numba": 0.10283350944519043,
+  "max_abs_diff_numpy_torch": 0.0,
+  "max_abs_diff_numpy_jax": 0.0
+}
