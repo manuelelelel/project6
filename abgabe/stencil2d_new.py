@@ -3,7 +3,7 @@
 # ******************************************************
 import click
 import matplotlib
-matplotlib.use("Agg")
+matplotlib.use("Agg") # so it runs headless and renders images in memory and writes them straight to files
 import matplotlib.pyplot as plt
 import numpy as np
 import time

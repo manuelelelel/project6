@@ -3,7 +3,7 @@
 stencil_bench.py — run NumPy / Numba / Torch / JAX stencil drivers across sizes,
 repeat each configuration N times, and save per-program boxplots.
 
-Assumes these scripts exist in CWD:
+these scripts need ot exist in CWD:
   - numpy: stencil2d_new.py
   - numba: stencil2d_numba_new.py
   - torch: stencil2d_torch_new.py
@@ -190,7 +190,7 @@ def bench_program(name:str, sizes:List[int], nz:int, iters:int, reps:int, halo:i
 
 def main():
     args = parse_args()
-    # Robust defaults so you can just run 'python stencil_bench.py'
+    # Robust defaults so just run 'python stencil_bench.py' possible
     threads = args.threads if args.threads > 0 else detect_threads()
     numba_layer = args.numba_threading_layer  # may be None; we choose 'workqueue' in make_child_env
 
