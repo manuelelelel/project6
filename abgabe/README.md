@@ -98,7 +98,7 @@ Concept:
 With this script we wanted to simplify the analysis. Here we run our drivers (NumPy / Numba / Torch / JAX) for a set of grid sizes many times, parse the printed runtimes, and produce:
 - a JSON file with every measurement,
 - a boxplot per framework (runtime per gridpoint vs working-set size),
-- a summary file with the arguments you used.
+- a summary file with the arguments we used.
 
 Concept for each selected framework and each size n (=nx=ny):
 - Builds command to run driver (NumPy, Numba, Torch, Jax)
@@ -129,7 +129,7 @@ The plots are build accordingly:
 
 Creates two figures in the newest `bench_*` directory containing `*_raw.json` files (or pass a path explicitly).
 
-- `overlay_medians.png` — overlay of median runtime/gridpoint vs working‑set MB (log‑log) for all frameworks found from the latest produced data via stencil_bench.py script or against one you select via terminal (example how to do so below).
+- `overlay_medians.png` — overlay of median runtime/gridpoint vs working‑set MB (log‑log) for all frameworks found from the latest produced data via stencil_bench.py script or against one we select via terminal (example how to do so below).
 - `speedup_vs_numpy.png` — speedup relative to NumPy at the common size across frameworks -> how much faster are the other methods.
 
 Examples for terminal:
