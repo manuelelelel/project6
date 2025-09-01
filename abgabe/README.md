@@ -9,7 +9,7 @@ This project implements the same numerical kernel in four libraries and compares
 
 We also include a benchmark harness (`stencil_bench.py`) that runs all drivers across grid sizes and repetitions, plus a post‑processing script (`overlay_and_speedup.py`) that overlays medians and computes speedups.
 
-Here is a Run cheatsheet, to get all the scripts running. Every script has default versions, so you can run all scripts just by using:
+Here is a Run cheatsheet, to get all the scripts running. Every script has default versions, so we can run all scripts just by using:
 > python script_name.py
 
 The scripts can also handle run commands via terminal, some example for each script are provided here:
@@ -20,7 +20,7 @@ The scripts can also handle run commands via terminal, some example for each scr
 > python stencil_bench.py --programs numpy numba torch jax --sizes 32 48 64 96 128 192 --iters 128 --reps 50
 > python overlay_and_speedup.py
 
-For torch and jax, there is the possibility to run it on GPU by switching from '--device cpu' to '--device cuda', but then you first need to install CUDA, since it wasn't already compatible to run. Which we didn't do in this project. We focused on CPU.
+For torch and jax, there is the possibility to run it on GPU by switching from '--device cpu' to '--device cuda', but then we first need to install CUDA, since it wasn't already compatible to run. Which we didn't do in this project. We focused on CPU.
 
 # Stack
 
@@ -95,7 +95,7 @@ Concept:
 
 # Benchmark script to run all scripts — `stencil_bench.py`
 
-With this script we wanted to simplify the analysis. Here you run your drivers (NumPy / Numba / Torch / JAX) for a set of grid sizes many times, parse the printed runtimes, and produce:
+With this script we wanted to simplify the analysis. Here we run our drivers (NumPy / Numba / Torch / JAX) for a set of grid sizes many times, parse the printed runtimes, and produce:
 - a JSON file with every measurement,
 - a boxplot per framework (runtime per gridpoint vs working-set size),
 - a summary file with the arguments you used.
