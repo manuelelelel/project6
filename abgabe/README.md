@@ -119,7 +119,7 @@ Key options
 - `--env KEY=VAL` pass extra env to children (repeatable)
 - `--extra "--plot_result"` append extra CLI to every child command
 
-The plots are build accordingly:
+The plots are built accordingly:
 - To estimate working set size in MB for the x-axis:
     - MB = nx * ny * nz * fields * bytes_per_scalar / 1e6
          = nx * ny * nz * 3      * 4                / 1e6
